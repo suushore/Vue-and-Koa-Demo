@@ -1,21 +1,20 @@
 
 let Koa = require('koa');
-let Router = require('koa-router');
+const Router = require('koa-router');
+const router = new Router();
 let cors = require('koa2-cors');
-let fs = require('fs');
+let routes = require('./routes/index.js');
 let PORT = 3000;
 
 const app = new Koa();
-const router = new Router();
 
-router.get('/getJson', async ctx => {
-    ctx.body = JSON.parse(fs.readFileSync( './static/material.json'));
-});
-
+//后端允许跨域
 app.use(cors());
-app.use(router.routes())
+
+router.use('',routes.routes());
+app.use(router.routes());
 app.use(router.allowedMethods());
 
 app.listen(PORT,()=>{
-    console.log("server is running in "+"http://127.0.0.1"+":"+PORT)
+    console.log("server is running in "+"http://127.0.0.1"+":"+PORT);
 });

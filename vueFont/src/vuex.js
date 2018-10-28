@@ -14,7 +14,7 @@ const mutations = {
 
 const actions = {
   getJson(context){
-    fetch('http://127.0.0.1:3000/getJson').then(function (res) {
+    fetch('http://127.0.0.1:3000/abouts').then(function (res) {
       console.log(res);
       if(res.status === 200){
         return res.json()
